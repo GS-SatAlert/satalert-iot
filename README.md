@@ -48,12 +48,15 @@ O sistema utiliza JSON para estruturar os dados, garantindo que o Dashboard e o 
 ### Hardware (Simulação Wokwi)
 1. Importe os arquivos `sketch.ino`, `diagram.json` e `library.txt` para o [Wokwi](https://wokwi.com/).
     Ou se preferir entre no nosso projeto já pronto [SatAlert_Wokwi](https://wokwi.com/projects/465949480051578881).
-3. Ajuste as variáveis `mqtt_server`, `mqtt_user` e `mqtt_pass` no arquivo `sketch.ino` com as credenciais do seu broker.
+2. Ajuste as variáveis `mqtt_server`, `mqtt_user` e `mqtt_pass` no arquivo `sketch.ino` com as credenciais do seu broker.
 
 ### Node-RED
 1. Abra o Node-RED e selecione a opção **Importar**.
 2. Cole o conteúdo do arquivo `flows.json`.
 3. Configure os nós MQTT com o mesmo endereço do broker utilizado no ESP32.
+4. Clique em **Deploy**.
+5. Após o deploy, acesse a interface através do navegador:
+`http://localhost:1880/ui`
 
 ---
 *Projeto desenvolvido para o primeiro semestre da Global Solution da disciplina de [IoT].*
