@@ -1,0 +1,305 @@
+[
+    {
+        "id": "satalert_flow_v2",
+        "type": "tab",
+        "label": "SatAlert",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "mqtt_broker_config",
+        "type": "mqtt-broker",
+        "name": "Broker Privado",
+        "broker": "6264bb59992c4a7ea9f762277e2f87a1.s1.eu.hivemq.cloud",
+        "port": "8883",
+        "tls": "d1b2583cfaf6c5a3",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": 4,
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "tab_dashboard",
+        "type": "ui_tab",
+        "name": "Painel SatAlert",
+        "icon": "dashboard"
+    },
+    {
+        "id": "group_monitoramento",
+        "type": "ui_group",
+        "name": "Sensores",
+        "tab": "tab_dashboard",
+        "order": 1,
+        "width": 6
+    },
+    {
+        "id": "group_status",
+        "type": "ui_group",
+        "name": "Alertas e Diagnóstico",
+        "tab": "tab_dashboard",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d1b2583cfaf6c5a3",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false,
+        "alpnprotocol": ""
+    },
+    {
+        "id": "mqtt_telemetria",
+        "type": "mqtt in",
+        "z": "satalert_flow_v2",
+        "name": "Telemetria",
+        "topic": "satalert/telemetria",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "mqtt_broker_config",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "node_temp",
+                "node_fumaca"
+            ]
+        ]
+    },
+    {
+        "id": "node_temp",
+        "type": "change",
+        "z": "satalert_flow_v2",
+        "name": "Extrair Temp",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temperatura",
+                "tot": "msg"
+            }
+        ],
+        "x": 360,
+        "y": 60,
+        "wires": [
+            [
+                "gauge_temp"
+            ]
+        ]
+    },
+    {
+        "id": "node_fumaca",
+        "type": "change",
+        "z": "satalert_flow_v2",
+        "name": "Extrair Fumaça",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.nivel_fumaca",
+                "tot": "msg"
+            }
+        ],
+        "x": 370,
+        "y": 140,
+        "wires": [
+            [
+                "gauge_fumaca"
+            ]
+        ]
+    },
+    {
+        "id": "gauge_temp",
+        "type": "ui_gauge",
+        "z": "satalert_flow_v2",
+        "name": "",
+        "group": "group_monitoramento",
+        "width": "",
+        "height": "",
+        "gtype": "gage",
+        "title": "Temperatura (°C)",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "-40",
+        "max": "80",
+        "colors": [
+            "#2a73c0",
+            "#48bf1d",
+            "#ca3838"
+        ],
+        "seg1": "0",
+        "seg2": "45",
+        "diff": false,
+        "className": "",
+        "x": 570,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "gauge_fumaca",
+        "type": "ui_gauge",
+        "z": "satalert_flow_v2",
+        "name": "",
+        "group": "group_monitoramento",
+        "width": "",
+        "height": "",
+        "gtype": "gage",
+        "title": "Nível de Fumaça (%)",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "40",
+        "seg2": "60",
+        "diff": false,
+        "className": "",
+        "x": 580,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "mqtt_alertas",
+        "type": "mqtt in",
+        "z": "satalert_flow_v2",
+        "name": "Alertas",
+        "topic": "satalert/alertas",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "mqtt_broker_config",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "16c4c2d8bc924df9"
+            ]
+        ]
+    },
+    {
+        "id": "mqtt_status",
+        "type": "mqtt in",
+        "z": "satalert_flow_v2",
+        "name": "Status",
+        "topic": "satalert/status",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "mqtt_broker_config",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 130,
+        "y": 380,
+        "wires": [
+            [
+                "text_status"
+            ]
+        ]
+    },
+    {
+        "id": "text_status",
+        "type": "ui_text",
+        "z": "satalert_flow_v2",
+        "group": "group_status",
+        "width": "",
+        "height": "",
+        "name": "",
+        "label": "Saúde do Sistema:",
+        "format": "Online há {{msg.payload.uptime_seg}} segundos",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 330,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "16c4c2d8bc924df9",
+        "type": "switch",
+        "z": "satalert_flow_v2",
+        "name": "",
+        "property": "payload.foco_incendio",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 370,
+        "y": 260,
+        "wires": [
+            [
+                "7736dc33e6ad63b9"
+            ],
+            [
+                "7736dc33e6ad63b9"
+            ]
+        ]
+    },
+    {
+        "id": "7736dc33e6ad63b9",
+        "type": "ui_template",
+        "z": "satalert_flow_v2",
+        "group": "group_status",
+        "name": "Alerta",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div style=\"background-color: {{msg.payload.foco_incendio ? '#FF0000' : '#008000'}}; \n            color: white; \n            padding: 18px; \n            border-radius: 9px; \n            text-align: center; \n            font-weight: bold; \n            font-size: 1.5em;\n            transition: background-color 0.5s;\">\n    {{msg.payload.foco_incendio ? '🔥 PERIGO: INCÊNDIO' : '✅ Ambiente Seguro'}}\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 570,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    }
+]
