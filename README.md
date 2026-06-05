@@ -47,7 +47,7 @@ O sistema utiliza JSON para estruturar os dados, garantindo que o Dashboard e o 
 ## 5. Instruções de Instalação
 ### Hardware (Simulação Wokwi)
 1. Importe os arquivos `sketch.ino`, `diagram.json` e `library.txt` para o [Wokwi](https://wokwi.com/).
-   Ou se preferir entre no nosso projeto já pronto [SatAlert_Wokwi](https://wokwi.com/projects/465949480051578881).
+    Ou se preferir entre no nosso projeto já pronto [SatAlert_Wokwi](https://wokwi.com/projects/465949480051578881).
 3. Ajuste as variáveis `mqtt_server`, `mqtt_user` e `mqtt_pass` no arquivo `sketch.ino` com as credenciais do seu broker.
 
 ### Node-RED
