@@ -18,7 +18,8 @@ O **SatAlert** é uma solução integrada de monitoramento ambiental. Enquanto n
 O sistema foi desenvolvido seguindo os requisitos acadêmicos para sistemas embarcados e conectividade IoT:
 
 - **Simulação:** Wokwi (ESP32).
-- **Entradas:** - Sensor DHT22 (Temperatura).
+- **Entradas:**
+    - Sensor DHT22 (Temperatura).
     - Sensor MQ-2 (Detecção de fumaça/gases).
 - **Saídas:**
     - LED de alerta (Sinalização visual).
