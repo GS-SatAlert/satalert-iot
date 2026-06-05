@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "author": "SatAlert",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": -163.2,
+      "left": -119.96,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -287.7,
+      "left": -5.4,
+      "attrs": { "temperature": "36.3" }
+    },
+    { "type": "wokwi-led", "id": "led1", "top": 15.6, "left": 90.2, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 61.55, "left": 0, "attrs": { "value": "330" } },
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 21.6, "left": 165, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 121.6,
+      "left": -263.2,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-gas-sensor", "id": "gas1", "top": -266.1, "left": -261.8, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "dht1:SDA", "esp:15", "green", [ "v0" ] ],
+    [ "esp:2", "r1:1", "green", [ "v0" ] ],
+    [ "r1:2", "led1:A", "green", [ "v0" ] ],
+    [ "led1:C", "esp:GND.1", "black", [ "h-86", "v-67.2" ] ],
+    [ "esp:4", "buzzer:1", "orange", [ "v115.2", "h192", "v28.8" ] ],
+    [ "buzzer:2", "esp:GND.1", "black", [ "h-58", "v-19.2", "h-172.8", "v-115.2" ] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "lcd1:SDA", "esp:21", "blue", [ "v0" ] ],
+    [ "lcd1:SCL", "esp:22", "cyan", [ "v0" ] ],
+    [ "gas1:VCC", "esp:5V", "red", [ "h-9.6", "v248.7" ] ],
+    [ "gas1:GND", "esp:GND.3", "black", [ "h0" ] ],
+    [ "gas1:AOUT", "esp:34", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
