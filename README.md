@@ -41,7 +41,7 @@ O sistema utiliza JSON para estruturar os dados, garantindo que o Dashboard e o 
 ## 4. Lógica de Funcionamento
 1. **Coleta:** Leitura dos sensores via ESP32 a cada 2 segundos.
 2. **Processamento:** O ESP32 normaliza os dados brutos ($0-4095$) para escala percentual utilizando a função `map()`.
-3. **Tomada de Decisão:** Caso Temperatura $> 45^\circ C$ ou Fumaça $> 60\%$, o sistema ativa o LED e o Buzzer localmente e dispara o alerta via MQTT.
+3. **Tomada de Decisão:** Caso Temperatura $> 45^\circ C$ ou Fumaça $> 60%$, o sistema ativa o LED e o Buzzer localmente e dispara o alerta via MQTT.
 4. **Interface:** O Dashboard no Node-RED processa o status em tempo real, utilizando uma lógica de estados que garante que o alerta visual mude instantaneamente conforme as condições do ambiente.
 
 ## 5. Instruções de Instalação
